@@ -21,7 +21,7 @@ import httpx
 
 load_dotenv()
 try:
-    API_KEY=os.environ['AI_PROXY']
+    API_KEY=os.environ['AIPROXY_TOKEN']
     API_URL="https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
 except:
     sys.exit(0)
