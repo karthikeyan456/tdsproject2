@@ -16,7 +16,6 @@ import pandas as pd
 import numpy as np
 import os
 from dotenv import load_dotenv
-import os
 import httpx
 
 load_dotenv()
@@ -88,32 +87,6 @@ def generate_readme(analysis):
     Returns:
         str: A string containing the generated report if the API call is successful.
         str: An error message if the API call fails.
-
-    API Interaction:
-        - Sends a POST request to an external API with the generated prompt.
-        - The API response is parsed to extract the generated analysis content.
-
-    Error Handling:
-        - Handles HTTP errors, request exceptions, and other unexpected errors.
-        - Prints an error message for debugging purposes and returns a generic failure message.
-
-    Example Usage:
-        analysis = {
-            "columns_with_datatypes": {"column1": "int", "column2": "float"},
-            "shape": (100, 5),
-            "describe": "Statistics summary here",
-            "categorical_columns": ["column1"],
-            "numerical_columns": ["column2"],
-            "correlation_coeff": {"column2": 0.85},
-            "missing_values": {"column1": 5, "column2": 0},
-            "unique_values": {"column1": 10, "column2": 50},
-            "outliers": {"column2": [1.5, 99.8]},
-            "variance": {"column2": 0.25},
-            "skewness": {"column2": 0.5},
-            "kurtosis": {"column2": 3.1},
-        }
-        report = generate_readme(analysis)
-    
 
     """
 
@@ -241,27 +214,7 @@ def find_columns_to_plot(analysis):
               ]
         str: An error message if the API call fails.
 
-    API Interaction:
-        - Sends a POST request to an external API with the constructed prompt.
-        - Parses the response to extract the list of recommended plots.
-
-    Error Handling:
-        - Handles HTTP errors, request exceptions, and other unexpected errors.
-        - Prints error messages for debugging purposes and returns a generic failure message.
-
-    Example Usage:
-        analysis = {
-            "columns_with_datatypes": {"column1": "int", "column2": "float"},
-            "shape": (100, 5),
-            "describe": "Statistics summary here",
-            "categorical_columns": ["column1"],
-            "numerical_columns": ["column2"],
-            "correlation_coeff": {"column2": 0.85},
-            "missing_values": {"column1": 5, "column2": 0},
-            "outliers": {"column2": [1.5, 99.8]},
-        }
-        plot_recommendations = find_columns_to_plot(analysis)
-        plot_list = eval(plot_recommendations)  # Converts the string output to a Python list
+  
     """
     prompt = f"""
     You are a data visualization expert. Based on the following dataset analysis summary, your task is to recommend configurations for six specific plot types: Scatter Plot, Line Plot, Histogram (with KDE), Box Plot, Bar Plot, and Heatmap. Provide your recommendations as a Python dictionary in the following format:
